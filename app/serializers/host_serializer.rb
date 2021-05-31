@@ -1,3 +1,5 @@
 class HostSerializer < ActiveModel::Serializer
-  attributes :id, :name, :password_digest, :email, :phone, :about
+  attributes :id, :name, :email, :phone, :about
+
+  has_many :rentals
 end

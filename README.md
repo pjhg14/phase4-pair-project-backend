@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## (App Name pending...)
 
-Things you may want to cover:
+## TODO
+- make show route for Host (shows all Rentals that host has) 
+- make full CRUD routes for Rental
 
-* Ruby version
+### After Frontend application of Host -< Rental
+- Create Renter (or Rentee) model
+- Add login functionallity to Renter
 
-* System dependencies
+- Create Appointment model
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Stretch
+- Create Comment model
+- refer to [This](https://medium.com/@TheDickWard/self-referential-relationships-aka-self-joins-in-rails-64f8f36ac311) for self referential models
