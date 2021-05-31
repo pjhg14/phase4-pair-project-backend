@@ -1,6 +1,12 @@
 class HostsController < ApplicationController
     # skip_before_action :logged_In?, only: [:create, :login]
-    before_action: :host_loggin_in?, only: [:show]
+    before_action :host_loggin_in?, only: [:show]
+    
+    def show
+        host = Host.find(params[:id])
+        render json: @host 
+    end
+
     def create
         host = Host.new(host_params)
 
@@ -22,9 +28,6 @@ class HostsController < ApplicationController
         end
     end
 
-    def show
-        render json: @host 
-    end
 
     def host_params
         params.permit(:name, :password, :email, :phone, :about)
