@@ -1,6 +1,6 @@
 class HostsController < ApplicationController
     # skip_before_action :logged_In?, only: [:create, :login]
-
+    before_action: :host_loggin_in?, only: [:show]
     def create
         host = Host.new(host_params)
 
@@ -16,10 +16,14 @@ class HostsController < ApplicationController
         host = Host.find_by(email: params[:email])
 
         if host && host.authenticate(params[:password])
-            render json: {name: host.name, token: JWT.encode({host_id: host.id}, "Flatiron", "HS256")}
+            render json: {name: host.name, token: generate_token({host_id: host.id})}
         else 
             render json: {message: "wrong email or password"}
         end
+    end
+
+    def show
+        render json: @host 
     end
 
     def host_params
