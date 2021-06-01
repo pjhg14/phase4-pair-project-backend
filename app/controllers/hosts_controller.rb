@@ -1,6 +1,6 @@
 class HostsController < ApplicationController
     # skip_before_action :logged_In?, only: [:create, :login]
-    before_action :host_loggin_in?, only: [:show]
+    before_action :host_loggin_in?, only: [:show, :update]
     
     def show
         render json: @host 
@@ -26,9 +26,26 @@ class HostsController < ApplicationController
             render json: {message: "wrong email or password"}
         end
     end
+    
+    def update
+        @host.assign_attributes(host_params)
+
+        if @host.valid?
+            @host.save 
+            render json: @host 
+        else
+            render json: {message: "update failed", error: @host.full_messages}
+        end
+    end
 
 
     def host_params
         params.permit(:name, :password, :email, :phone, :about)
     end
+
+    # def host_params2
+    #     params.permit(:host)
+    # end
+
+   
 end
