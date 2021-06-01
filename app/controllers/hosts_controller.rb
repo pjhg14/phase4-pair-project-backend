@@ -3,7 +3,6 @@ class HostsController < ApplicationController
     before_action :host_loggin_in?, only: [:show]
     
     def show
-        host = Host.find(params[:id])
         render json: @host 
     end
 
@@ -12,7 +11,7 @@ class HostsController < ApplicationController
 
         if host.valid?
             host.save
-            render json: host
+            render json: {name: host.name, token: generate_token({host_id: host.id})}
         else
         render json: {error: "Cannot create host"}
         end 
