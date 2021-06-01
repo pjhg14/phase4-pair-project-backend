@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :rentals
+  resources :rentals, only: [:index, :show, :create, :update, :destroy]
   resources :hosts, only: [:create, :show]
 
   post "/login", to: "hosts#login"
