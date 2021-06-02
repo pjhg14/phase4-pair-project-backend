@@ -18,6 +18,7 @@ class HostsController < ApplicationController
     end
     
     def login
+        
         host = Host.find_by(email: params[:email])
 
         if host && host.authenticate(params[:password])
@@ -32,7 +33,7 @@ class HostsController < ApplicationController
 
         if @host.valid?
             @host.save 
-            render json: @host 
+            render json: {message: "update successful"}
         else
             render json: {message: "update failed", error: @host.full_messages}
         end

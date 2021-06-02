@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
 
     def host_loggin_in?
-       
+        
         begin
             headers = request.headers["Authorization"]
             token = headers.split(" ")[1]

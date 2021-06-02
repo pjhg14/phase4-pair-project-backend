@@ -1,5 +1,5 @@
 class RentalsController < ApplicationController
-    before_action :host_loggin_in?, only: [:create, :update]
+    # before_action :host_loggin_in?, only: [:create, :update]
 
 
     def index
@@ -13,7 +13,7 @@ class RentalsController < ApplicationController
     end
 
     def create
-        rental = Rental.new(rental_params.merge({host_id: @host.id}))
+        rental = Rental.new(rental_params)
         if rental.valid?
             rental.save 
             render json: rental 
@@ -23,6 +23,7 @@ class RentalsController < ApplicationController
     end
 
     def update
+        
         rental = Rental.find(params[:id])
         rental.assign_attributes(rental_params)
         if rental.valid?
