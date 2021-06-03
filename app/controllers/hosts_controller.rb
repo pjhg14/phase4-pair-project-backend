@@ -33,7 +33,7 @@ class HostsController < ApplicationController
         if host && host.authenticate(params[:password])
             render json: {name: host.name, token: generate_token({host_id: host.id})}
         else 
-            render json: {message: "wrong email or password"}
+            render json: {error: "WRONG EMAIL OR PASSWORD!"}
         end
     end
 
