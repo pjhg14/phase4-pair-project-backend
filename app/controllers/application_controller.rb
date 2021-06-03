@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::API
 
-    def host_loggin_in?
-        
+    def generate_token(payload)
+        JWT.encode(payload, "todo")
+    end
+
+    def host_logged_in?
         begin
             headers = request.headers["Authorization"]
             token = headers.split(" ")[1]
@@ -12,13 +15,24 @@ class ApplicationController < ActionController::API
         end
 
         unless @host 
-    
-        render json: {error: "Please login"}  
+            render json: {error: "Please login"}  
         end
        
     end
 
-    def generate_token(payload)
-        JWT.encode(payload, "todo")
+    def renter_logged_in?
+        begin
+            headers = request.headers["Authorization"]
+            token = headers.split(" ")[1]
+            renter_id = JWT.decode(token, "todo")[0]["renter_id"]
+            @renter = Renter.find(renter_id)
+        rescue 
+            @renter = nil 
+        end
+
+        unless @renter 
+            render json: {error: "Please login"}  
+        end
     end
+    
 end

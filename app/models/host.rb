@@ -1,5 +1,5 @@
 class Host < ApplicationRecord
+    has_secure_password
     has_many :rentals
 
-    has_secure_password
 end

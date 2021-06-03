@@ -6,8 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'date'
+
 Host.destroy_all
 Rental.destroy_all
+Renter.destroy_all
+Appointment.destroy_all
 
 puts "Creating Hosts"
 # Host.create(name: "test", password: "12345", email: "test", phone: "test", about: "testing")
@@ -40,5 +44,24 @@ Rental.create(host: h2, cost: rand(1.0..300.0), address: "Sea Gate, Brooklyn", m
 Rental.create(host: h4, cost: rand(1.0..300.0), address: "Shore Acres, Staten Island", max_guests: rand(1..10), description: "Our OPEN retired family room, lower level of home is separated from rest of basement by a curtain.", image: "https://a0.muscache.com/im/pictures/40208981/d3086697_original.jpg?im_w=1200")
 Rental.create(host: h2, cost: rand(1.0..300.0), address: "Allerton, the Bronx", max_guests: rand(1..10), description: "Our space has everything you may need to make you feel right at home. It’s a new space designed with Santa in mind.", image: "https://a0.muscache.com/im/pictures/d13ce1ea-4433-4f75-b70f-9072dd06356d.jpg?im_w=1200")
 Rental.create(host: h2, cost: rand(1.0..300.0), address: "Pomonok, Queens", max_guests: rand(1..10), description: "Breakfast can be served at request (all I've got is cornflakes and pickles), but there are many close restaurants/shopping centers/malls etcetera near by.", image: "https://a0.muscache.com/im/pictures/miso/Hosting-45112638/original/4b6fe06c-457a-49b2-bd22-7440e2304440.jpeg?im_w=1200")
+
+puts "Creating Renters"
+# Renter.create(name: "", password: "TODO", email: "", phone: "")
+5.times do
+    Renter.create(name: Faker::Name.name, password: "TODO", email: Faker::Internet.email, phone: Faker::PhoneNumber.cell_phone)
+end
+
+puts "Creating Appointments"
+# Appointment.create(rental_id: 1, renter_id: 1, start_date: DateTime.now(), end_date: DateTime.now(), num_guests: 1)
+10.times do
+    near_date = rand(DateTime.now - 3.months..(DateTime.now + 2.months))
+    far_date = near_date + rand(1..3).months
+
+    Appointment.create(rental: Rental.all.sample, 
+                    renter: Renter.all.sample, 
+                    start_date: near_date, 
+                    end_date: far_date, 
+                    num_guests: rand(1..3))
+end
 
 puts "Done!"

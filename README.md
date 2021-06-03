@@ -15,3 +15,8 @@
 ### Stretch
 - Create Comment model
 - refer to [This](https://medium.com/@TheDickWard/self-referential-relationships-aka-self-joins-in-rails-64f8f36ac311) for self referential models
+
+
+### Notes
+- Paul: remember to start server by entering ```sudo service postgresql start``` 
+- check if postgresql is running with ```pstree | head -n 5``` 

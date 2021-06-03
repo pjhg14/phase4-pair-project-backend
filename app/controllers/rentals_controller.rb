@@ -1,7 +1,6 @@
 class RentalsController < ApplicationController
     # before_action :host_loggin_in?, only: [:create, :update]
 
-
     def index
         rentals = Rental.all
         render json: rentals 
@@ -37,6 +36,7 @@ class RentalsController < ApplicationController
     def destroy
         rental = Rental.find(params[:id])
         rental.destroy
+        
         render json: {message: "Rental has been deleted"}
     end
 
