@@ -1,7 +1,14 @@
 class AppointmentsController < ApplicationController
     # before_action :renter_logged_in?, only: [:create, :update]
 
+    def show
+        appointment = Appointment.find(params[:id])
+        render json: appointment
+    end
+    
+
     def create
+        byebug
         appointment = Appointment.new(appointment_params)
 
         if appointment.valid?

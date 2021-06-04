@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :hosts, only: [:show, :create, :update]
   resources :rentals, only: [:index, :show, :create, :update, :destroy]
   resources :renters, only: [:show, :create, :update]
-  resources :appointments, only: [:create, :update, :destroy]
+  resources :appointments, only: [:show, :create, :update, :destroy]
 
   # Custom routes
   post "/host/login", to: "hosts#login"
