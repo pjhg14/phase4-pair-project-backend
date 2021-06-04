@@ -15,7 +15,7 @@ class RentalsController < ApplicationController
         rental = Rental.new(rental_params)
         if rental.valid?
             rental.save 
-            render json: rental 
+            render json: {message: "Successfully Created Rental"} 
         else
             render json: {error: "Unable to create rental", details: rental.errors.full_messages }
         end
@@ -27,7 +27,7 @@ class RentalsController < ApplicationController
         rental.assign_attributes(rental_params)
         if rental.valid?
             rental.save 
-            render json: rental 
+            render json: {message: "Successfully Updated Rental"} 
         else
             render json: {error: "Unable to update rental", details: rental.errors.full_messages }
         end

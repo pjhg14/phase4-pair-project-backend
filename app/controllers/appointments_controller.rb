@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
     
 
     def create
-        byebug
+        # byebug
         appointment = Appointment.new(appointment_params)
 
         if appointment.valid?
@@ -41,7 +41,7 @@ class AppointmentsController < ApplicationController
     private
 
     def appointment_params
-        params.require(:appointment).require(:rental_id, :renter_id, :start_date, :end_date, :num_guests)
+        params.require(:appointment).permit(:rental_id, :renter_id, :start_date, :end_date, :num_guests)
     end
     
 end
